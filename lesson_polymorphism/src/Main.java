@@ -15,6 +15,13 @@ public class Main {
         companyA.setCredit(500);
         companyA.setCredit(1500);
 
+        System.out.println(companyA.getCredit());
+        System.out.println(companyA.getDebit());
+        System.out.println();
+        companyA.shiftMoney(-1000);
+        System.out.println(companyA.getCredit());
+        companyA.shiftMoney(1000);
+        System.out.println(companyA.getDebit());
         companyA.setTaxSystem(new USNIcome());
         companyA.payTaxes();
         companyA.setTaxSystem(new USNNetIncome());

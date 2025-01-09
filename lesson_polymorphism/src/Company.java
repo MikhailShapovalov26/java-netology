@@ -22,12 +22,16 @@ public class Company {
         return credit;
     }
 
+    public long getDebit() {
+        return debid;
+    }
+
 
     public void shiftMoney(int amount) {
         if (amount > 0) {
-            setDebid(debid + amount);
+            setDebid(amount);
         } else if (amount < 0) {
-            setCredit(credit + Math.abs(amount));
+            setCredit(Math.abs(amount));
         }
     }
 
