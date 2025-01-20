@@ -2,12 +2,6 @@ public class PasswordChecker {
     private static Integer lenght;
     private static Integer periodicity;
 
-
-    public void PassswordChecker(int lenght, int periodicity) {
-        this.lenght = lenght;
-        this.periodicity = periodicity;
-    }
-
     public void setLenght(int lenght) {
         if (lenght < 0) {
             throw new IllegalArgumentException("Передали недопустимое значение длинны пароля " + lenght);
@@ -27,27 +21,25 @@ public class PasswordChecker {
 
     public static boolean verify(String password) {
         if (lenght == null  && periodicity == null ) {
-            throw new IllegalStateException("Передали недопустимое значение " + lenght);
+            throw new IllegalStateException("Длина пароля или количество повторений не установлены.");
         }
         int count = 1;
-        if (password.length() >= lenght) {
-            for (int i = 0; i < password.length() - 1; i++) {
-                for (int j = i + 1; j < password.length(); j++) {
-                    if (password.charAt(i) == password.charAt(j)) {
-                        count = count + 1;
-                    } else {
-                        count = 1;
-                    }
-                    if (count > periodicity) {
-                        return false;
-                    }
-                }
-            }
-            return true;
-        } else {
+        if (password.length() < lenght) {
             return false;
         }
 
-    }
+        for (int i = 1; i < password.length(); i++) {
+            if (password.charAt(i) == password.charAt(i-1)) {
+                count++;
+                if (count > periodicity) {
+                    return false;
+                }
+            } else {
+                count = 1;
+            }
+
+        }
+        return true;
+        }
 
 }

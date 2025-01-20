@@ -6,15 +6,15 @@ public class Main {
         PasswordChecker passwordChecker = new PasswordChecker();
         try {
             passwordChecker.setLenght(Integer.parseInt(message("Введите мин. длину пароля: ")));
-        } catch (NumberFormatException e) {
-            System.out.printf("Недопустимое значение длинны пароля: %S%n  Выход из программы BYE", e);
-            Runtime.getRuntime().exit(1);
+        } catch (Exception e) {
+            System.out.printf("Недопустимое значение длинны пароля: %S\n  Выход из программы BYE", e);
+            return;
         }
         try {
             passwordChecker.setPeriodicity(Integer.parseInt(message("Введите макс. допустимое количество повторений символа подряд: ")));
-        } catch (NumberFormatException e) {
+        } catch (Exception e) {
             System.out.printf("Недопустимое значение повторения символов: %S%n Выход из программы BYE", e);
-            Runtime.getRuntime().exit(2);
+            return;
         }
         while (true) {
             String password = message("Введите пароль или end: ");
@@ -27,6 +27,7 @@ public class Main {
                     System.out.println("Не подходит!");
                 }
             }
+
         }
 
     }
